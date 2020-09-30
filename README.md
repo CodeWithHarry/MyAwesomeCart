@@ -1,2 +1,2 @@
-# MyAwesomeCart
-A Django E commerce website
+# MyAwesomeCart --Version Django
+A Django E commerce website for web based shopping application
