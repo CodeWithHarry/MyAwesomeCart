@@ -1,2 +1,2 @@
 # MyAwesomeCart
-A Django E commerce website
+A Django E commerce website with payment gateway.
