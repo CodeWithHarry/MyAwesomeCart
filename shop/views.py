@@ -142,7 +142,9 @@ def handlerequest(request):
     verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)
     if verify:
         if response_dict['RESPCODE'] == '01':
-            print('order successful')
+                thank= True
+            return render(request, 'shop/paymentstatus.html', {'response': response_dict, 'thank':thank})
         else:
             print('order was not successful because' + response_dict['RESPMSG'])
-    return render(request, 'shop/paymentstatus.html', {'response': response_dict})
+            return render(request, 'shop/paymentstatus.html', {'response': response_dict})
+
