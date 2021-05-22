@@ -107,8 +107,6 @@ def checkout(request):
         order.save()
         update = OrderUpdate(order_id=order.order_id, update_desc="The order has been placed")
         update.save()
-        thank = True
-        id = order.order_id
         # return render(request, 'shop/checkout.html', {'thank':thank, 'id': id})
         # Request paytm to transfer the amount to your account after payment by user
         param_dict = {
@@ -142,7 +140,8 @@ def handlerequest(request):
     verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)
     if verify:
         if response_dict['RESPCODE'] == '01':
-            print('order successful')
+            thank= True
+            return render(request, 'shop/paymentstatus.html', {'response': response_dict, 'thank':thank})
         else:
             print('order was not successful because' + response_dict['RESPMSG'])
-    return render(request, 'shop/paymentstatus.html', {'response': response_dict})
+            return render(request, 'shop/paymentstatus.html', {'response': response_dict})
